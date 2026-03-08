@@ -32,6 +32,7 @@ class Solution {
         while (!pq.isEmpty()) {
             ListNode minNode = pq.poll();
             p.next = minNode;
+            // 弹出的节点的下一个节点加入优先级队列
             if (minNode.next != null) {
                 pq.add(minNode.next);
             }
