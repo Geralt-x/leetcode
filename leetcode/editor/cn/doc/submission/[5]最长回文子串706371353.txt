@@ -1,0 +1,34 @@
+class Solution {
+    public String longestPalindrome(String s) {
+        int length = s.length();
+        if(length < 2){
+            return s;
+        }
+        int maxlen = 1;
+        int begin = 0;
+        char[] charArray = s.toCharArray();
+        for(int i = 0; i < length - 1; i++){
+            for(int j = i+1; j < length;j++){
+                if(j - i + 1 > maxlen && valid(charArray, i, j)){
+                    maxlen = j - i + 1;
+                    begin = i;
+                }
+            }
+        }
+        return s.substring(begin, begin + maxlen);
+        
+    }
+
+    private boolean valid(char[] charArray, int left, int right){
+        while(left < right){
+            if(charArray[left] != charArray[right]){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+//runtime:98 ms
+//memory:42.8 MB
